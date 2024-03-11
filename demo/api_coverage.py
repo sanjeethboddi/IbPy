@@ -15,7 +15,6 @@ import sys
 from functools import partial
 from logging import DEBUG, INFO, WARN, ERROR
 from optparse import OptionParser
-from random import randint
 from time import sleep, strftime, time
 
 from ib.ext.ComboLeg import ComboLeg
@@ -25,6 +24,7 @@ from ib.ext.Order import Order
 from ib.ext.ScannerSubscription import ScannerSubscription
 from ib.lib.logger import logger as basicConfig
 from ib.opt import ibConnection, message
+import secrets
 
 
 error_msgs = {}
@@ -78,7 +78,7 @@ def save_tick(msg):
 
 
 def gen_tick_id():
-    i = randint(100, 10000)
+    i = secrets.SystemRandom().randint(100, 10000)
     while True:
         yield i
         i += 1
